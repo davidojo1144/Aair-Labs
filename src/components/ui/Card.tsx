@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ViewProps } from 'react-native';
+import { View, type ViewProps } from 'react-native';
 import { cn } from '@/src/lib/utils';
 
 export interface CardProps extends ViewProps {
@@ -10,7 +10,7 @@ export const Card: React.FC<CardProps> = ({ children, className, ...props }) => 
   return (
     <View
       className={cn(
-        'p-5 rounded-2xl bg-white dark:bg-secondary-800 border border-secondary-100 dark:border-secondary-700 shadow-sm',
+        'rounded-2xl border border-secondary-100 bg-white p-5 shadow-sm dark:border-secondary-700 dark:bg-secondary-800',
         className,
       )}
       {...props}

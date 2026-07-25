@@ -1,10 +1,9 @@
 import * as LocalAuthentication from 'expo-local-authentication';
 import { apiClient } from './api';
-import { LoginResponse, User } from '@/src/types';
+import type { LoginResponse, User } from '@/src/types';
 
 export const authService = {
   async login(email: string, pass: string): Promise<LoginResponse> {
-    // Mock authentication logic for demo template (fallback to placeholder data if server unavailable)
     try {
       const response = await apiClient.post<LoginResponse>('/auth/login', {
         email,
@@ -12,7 +11,7 @@ export const authService = {
       });
       return response.data;
     } catch {
-      // Demo response for initial bootstrap testing
+      // Demo fallback for initial bootstrap testing
       return {
         user: {
           id: 'user_12345',

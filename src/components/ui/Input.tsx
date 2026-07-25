@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TextInputProps } from 'react-native';
+import { View, Text, TextInput, type TextInputProps } from 'react-native';
 import { cn } from '@/src/lib/utils';
 
 export interface InputProps extends TextInputProps {
@@ -12,9 +12,9 @@ export interface InputProps extends TextInputProps {
 export const Input = React.forwardRef<TextInput, InputProps>(
   ({ label, error, leftIcon, rightIcon, className, ...props }, ref) => {
     return (
-      <View className="w-full mb-4">
+      <View className="mb-4 w-full">
         {label && (
-          <Text className="text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1.5">
+          <Text className="mb-1.5 text-sm font-medium text-secondary-700 dark:text-secondary-300">
             {label}
           </Text>
         )}
@@ -26,7 +26,7 @@ export const Input = React.forwardRef<TextInput, InputProps>(
             ref={ref}
             placeholderTextColor="#94a3b8"
             className={cn(
-              'w-full px-4 py-3 rounded-xl border border-secondary-200 dark:border-secondary-700 bg-white dark:bg-secondary-800 text-secondary-900 dark:text-white font-normal text-base',
+              'w-full rounded-xl border border-secondary-200 bg-white px-4 py-3 text-base font-normal text-secondary-900 dark:border-secondary-700 dark:bg-secondary-800 dark:text-white',
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
               error && 'border-danger dark:border-danger',
@@ -38,7 +38,7 @@ export const Input = React.forwardRef<TextInput, InputProps>(
           {rightIcon && <View className="absolute right-3 z-10">{rightIcon}</View>}
         </View>
 
-        {error && <Text className="text-xs text-danger mt-1 font-medium">{error}</Text>}
+        {error && <Text className="mt-1 text-xs font-medium text-danger">{error}</Text>}
       </View>
     );
   },

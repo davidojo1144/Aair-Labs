@@ -1,5 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, TouchableOpacityProps } from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+  type TouchableOpacityProps,
+  type GestureResponderEvent,
+} from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { cn } from '@/src/lib/utils';
 
@@ -24,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const handlePress = (e: any) => {
+  const handlePress = (e: GestureResponderEvent) => {
     if (enableHaptics) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
@@ -36,22 +42,21 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles =
     'flex-row items-center justify-center rounded-xl font-semibold active:opacity-80';
 
-  const variantStyles = {
-    primary: 'bg-primary-600 active:bg-primary-700 text-white',
-    secondary: 'bg-secondary-700 active:bg-secondary-800 text-white',
-    outline:
-      'border border-secondary-300 dark:border-secondary-700 bg-transparent text-secondary-900 dark:text-white',
-    ghost: 'bg-transparent text-primary-600 dark:text-primary-400',
-    danger: 'bg-danger text-white',
+  const variantStyles: Record<NonNullable<ButtonProps['variant']>, string> = {
+    primary: 'bg-primary-600 active:bg-primary-700',
+    secondary: 'bg-secondary-700 active:bg-secondary-800',
+    outline: 'border border-secondary-300 dark:border-secondary-700 bg-transparent',
+    ghost: 'bg-transparent',
+    danger: 'bg-danger',
   };
 
-  const sizeStyles = {
-    sm: 'px-3 py-2 text-sm',
-    md: 'px-4 py-3 text-base',
-    lg: 'px-6 py-4 text-lg',
+  const sizeStyles: Record<NonNullable<ButtonProps['size']>, string> = {
+    sm: 'px-3 py-2',
+    md: 'px-4 py-3',
+    lg: 'px-6 py-4',
   };
 
-  const textColorStyles = {
+  const textColorStyles: Record<NonNullable<ButtonProps['variant']>, string> = {
     primary: 'text-white font-semibold',
     secondary: 'text-white font-semibold',
     outline: 'text-secondary-900 dark:text-white font-medium',
@@ -78,7 +83,7 @@ export const Button: React.FC<ButtonProps> = ({
         />
       ) : (
         <>
-          {icon && <React.Fragment>{icon}</React.Fragment>}
+          {icon && <>{icon}</>}
           <Text className={cn(textColorStyles[variant], icon ? 'ml-2' : '')}>{title}</Text>
         </>
       )}
