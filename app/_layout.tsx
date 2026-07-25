@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 2,
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
     },
   },
 });
@@ -34,8 +34,7 @@ export default function RootLayout() {
       <QueryClientProvider client={queryClient}>
         <StatusBar style={isDark ? 'light' : 'dark'} />
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: false, presentation: 'modal' }} />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" options={{ title: 'Oops!' }} />
         </Stack>
         <Toast config={toastConfig} />

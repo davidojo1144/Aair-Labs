@@ -4,9 +4,10 @@ import { cn } from '@/src/lib/utils';
 
 export interface CardProps extends ViewProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-export const Card: React.FC<CardProps> = ({ children, className, ...props }) => {
+export const Card: React.FC<CardProps> = ({ children, className, ...props }: CardProps) => {
   return (
     <View
       className={cn(

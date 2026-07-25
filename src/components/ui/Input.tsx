@@ -7,6 +7,7 @@ export interface InputProps extends TextInputProps {
   error?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
+  className?: string;
 }
 
 export const Input = React.forwardRef<TextInput, InputProps>(

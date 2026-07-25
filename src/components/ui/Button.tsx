@@ -16,9 +16,10 @@ export interface ButtonProps extends TouchableOpacityProps {
   isLoading?: boolean;
   enableHaptics?: boolean;
   icon?: React.ReactNode;
+  className?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   title,
   variant = 'primary',
   size = 'md',
@@ -29,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
   onPress,
   disabled,
   ...props
-}) => {
+}: ButtonProps) => {
   const handlePress = (e: GestureResponderEvent) => {
     if (enableHaptics) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
