@@ -4,6 +4,7 @@
     "jsx": "react-jsx",
     "strict": true,
     "baseUrl": ".",
+    "types": ["jest"],
     "paths": {
       "@/*": ["./*"]
     }
