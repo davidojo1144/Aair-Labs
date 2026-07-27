@@ -88,7 +88,7 @@ export const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ visible, onClo
             >
               <View
                 className={`w-16 h-16 rounded-full items-center justify-center mb-3 ${
-                  isListening ? 'bg-primary-600 animate-pulse' : 'bg-secondary-400'
+                  isListening ? 'bg-primary-600' : 'bg-secondary-400'
                 }`}
               >
                 {isListening ? (
