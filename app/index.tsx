@@ -73,9 +73,9 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-background-light dark:bg-background-dark">
       <ScrollView className="flex-1 p-4" contentContainerStyle={{ paddingBottom: 110 }}>
         {/* App Header */}
-        <View className="flex-row items-center justify-between mb-5 mt-2">
+        <View className="mb-5 mt-2 flex-row items-center justify-between">
           <View className="flex-row items-center">
-            <View className="w-10 h-10 rounded-2xl bg-primary-600 items-center justify-center mr-3 shadow-sm">
+            <View className="mr-3 h-10 w-10 items-center justify-center rounded-2xl bg-primary-600">
               <ListTodo size={22} color="#ffffff" />
             </View>
             <View>
@@ -91,7 +91,7 @@ export default function HomeScreen() {
           {/* Theme Toggle Button */}
           <TouchableOpacity
             onPress={handleToggleTheme}
-            className="p-2.5 rounded-xl bg-white dark:bg-secondary-800 border border-secondary-200 dark:border-secondary-700 shadow-sm"
+            className="rounded-xl border border-secondary-200 bg-white p-2.5 dark:border-secondary-700 dark:bg-secondary-800"
           >
             {isDark ? <Sun size={20} color="#f59e0b" /> : <Moon size={20} color="#64748b" />}
           </TouchableOpacity>
@@ -107,7 +107,7 @@ export default function HomeScreen() {
             placeholderTextColor="#94a3b8"
             value={searchQuery}
             onChangeText={setSearchQuery}
-            className="w-full pl-10 pr-10 py-3 rounded-xl border border-secondary-200 bg-white text-base text-secondary-900 dark:border-secondary-700 dark:bg-secondary-800 dark:text-white"
+            className="w-full rounded-xl border border-secondary-200 bg-white py-3 pl-10 pr-10 text-base text-secondary-900 dark:border-secondary-700 dark:bg-secondary-800 dark:text-white"
           />
           {searchQuery ? (
             <TouchableOpacity
@@ -120,8 +120,8 @@ export default function HomeScreen() {
         </View>
 
         {/* Status Filter Tabs */}
-        <View className="flex-row items-center justify-between mb-4">
-          <View className="flex-row bg-secondary-100 dark:bg-secondary-800 p-1 rounded-xl flex-1 mr-2">
+        <View className="mb-4 flex-row items-center justify-between">
+          <View className="mr-2 flex-1 flex-row rounded-xl bg-secondary-100 p-1 dark:bg-secondary-800">
             {(['all', 'active', 'completed'] as TaskFilter[]).map((tab) => (
               <TouchableOpacity
                 key={tab}
@@ -129,10 +129,8 @@ export default function HomeScreen() {
                   Haptics.selectionAsync();
                   setFilterStatus(tab);
                 }}
-                className={`flex-1 py-1.5 rounded-lg items-center ${
-                  filterStatus === tab
-                    ? 'bg-white dark:bg-secondary-700 shadow-xs'
-                    : 'bg-transparent'
+                className={`flex-1 items-center rounded-lg py-1.5 ${
+                  filterStatus === tab ? 'bg-white dark:bg-secondary-700' : 'bg-transparent'
                 }`}
               >
                 <Text
@@ -151,7 +149,7 @@ export default function HomeScreen() {
           {completedCount > 0 && (
             <TouchableOpacity
               onPress={clearCompleted}
-              className="px-2.5 py-2 rounded-xl bg-red-50 dark:bg-red-950/40 flex-row items-center"
+              className="flex-row items-center rounded-xl bg-red-50 px-2.5 py-2 dark:bg-red-950/40"
             >
               <Trash2 size={14} color="#ef4444" />
               <Text className="ml-1 text-xs font-medium text-red-600 dark:text-red-400">Clear</Text>
@@ -165,16 +163,16 @@ export default function HomeScreen() {
             <TaskItem key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
           ))
         ) : (
-          <Card className="items-center justify-center p-8 mt-4 border-dashed border-2 border-secondary-200 dark:border-secondary-700 bg-transparent">
+          <Card className="mt-4 items-center justify-center border-2 border-dashed border-secondary-200 bg-transparent p-8 dark:border-secondary-700">
             <CheckCircle2 size={48} color="#94a3b8" />
-            <Text className="text-lg font-bold text-secondary-800 dark:text-white mt-3">
+            <Text className="mt-3 text-lg font-bold text-secondary-800 dark:text-white">
               {searchQuery
                 ? 'No matching tasks found'
                 : filterStatus === 'completed'
                   ? 'No completed tasks yet'
                   : 'No active tasks!'}
             </Text>
-            <Text className="text-xs text-secondary-500 text-center mt-1 mb-5">
+            <Text className="mb-5 mt-1 text-center text-xs text-secondary-500">
               {searchQuery
                 ? 'Try searching for something else'
                 : 'Tap the + button or use the Voice FAB to dictate your to-do list.'}
@@ -202,7 +200,7 @@ export default function HomeScreen() {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             setVoiceModalOpen(true);
           }}
-          className="w-14 h-14 rounded-full bg-primary-500 items-center justify-center shadow-lg border-2 border-white dark:border-secondary-800"
+          className="h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-primary-500 dark:border-secondary-800"
         >
           <Mic size={24} color="#ffffff" />
         </TouchableOpacity>
@@ -214,7 +212,7 @@ export default function HomeScreen() {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             router.push('/add-task');
           }}
-          className="w-14 h-14 rounded-full bg-primary-700 items-center justify-center shadow-lg border-2 border-white dark:border-secondary-800"
+          className="h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-primary-700 dark:border-secondary-800"
         >
           <Plus size={28} color="#ffffff" />
         </TouchableOpacity>

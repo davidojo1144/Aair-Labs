@@ -30,7 +30,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
 
   return (
     <Card
-      className={`mb-3 transition-all ${task.completed ? 'opacity-70 bg-secondary-50 dark:bg-secondary-900/40' : ''}`}
+      className={`mb-3 ${
+        task.completed ? 'bg-secondary-50 opacity-70 dark:bg-secondary-900/40' : ''
+      }`}
     >
       <View className="flex-row items-start justify-between">
         {/* Toggle Checkbox & Title/Desc */}
@@ -51,7 +53,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
             <Text
               className={`text-base font-semibold ${
                 task.completed
-                  ? 'text-secondary-400 dark:text-secondary-500 line-through'
+                  ? 'text-secondary-400 line-through dark:text-secondary-500'
                   : 'text-secondary-900 dark:text-white'
               }`}
             >
@@ -63,7 +65,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
                 numberOfLines={2}
                 className={`mt-1 text-xs ${
                   task.completed
-                    ? 'text-secondary-400 dark:text-secondary-600 line-through'
+                    ? 'text-secondary-400 line-through dark:text-secondary-600'
                     : 'text-secondary-500 dark:text-secondary-400'
                 }`}
               >
@@ -105,7 +107,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
         {/* Delete Button */}
         <TouchableOpacity
           onPress={handleDelete}
-          className="p-1 rounded-lg active:bg-red-50 dark:active:bg-red-950/40"
+          className="rounded-lg p-1 active:bg-red-50 dark:active:bg-red-950/40"
         >
           <Trash2 size={18} color="#ef4444" />
         </TouchableOpacity>
