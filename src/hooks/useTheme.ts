@@ -1,16 +1,27 @@
-import { useColorScheme as useRNColorScheme } from 'react-native';
+import { useColorScheme } from 'nativewind';
 import { useSettingsStore } from '@/src/store/useSettingsStore';
 
 export function useTheme() {
-  const systemScheme = useRNColorScheme();
-  const { theme, setTheme } = useSettingsStore();
+  const { colorScheme, setColorScheme } = useColorScheme();
+  const { theme, setTheme: persistTheme } = useSettingsStore();
 
-  const activeTheme = theme === 'system' ? systemScheme || 'light' : theme;
-  const isDark = activeTheme === 'dark';
+  const isDark = colorScheme === 'dark';
+
+  const setTheme = async (newTheme: 'light' | 'dark' | 'system') => {
+    // Persist to AsyncStorage via Zustand
+    await persistTheme(newTheme);
+
+    // Imperatively tell NativeWind to switch dark: classes
+    if (newTheme === 'system') {
+      setColorScheme('system');
+    } else {
+      setColorScheme(newTheme);
+    }
+  };
 
   return {
     theme,
-    activeTheme,
+    activeTheme: colorScheme || 'light',
     isDark,
     setTheme,
   };
