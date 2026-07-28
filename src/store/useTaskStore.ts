@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Task, TaskFilter, TaskSortBy, CreateTaskPayload } from '@/src/types/task';
+import type { Task, TaskFilter, CreateTaskPayload } from '@/src/types/task';
 import { taskStorage } from '@/src/lib/taskStorage';
 import { parseNaturalLanguageTasks } from '@/src/lib/taskParser';
 
@@ -8,7 +8,6 @@ interface TaskStore {
   isLoading: boolean;
   searchQuery: string;
   filterStatus: TaskFilter;
-  sortBy: TaskSortBy;
   isVoiceModalOpen: boolean;
 
   // Actions
@@ -20,7 +19,6 @@ interface TaskStore {
   clearCompleted: () => Promise<void>;
   setSearchQuery: (query: string) => void;
   setFilterStatus: (filter: TaskFilter) => void;
-  setSortBy: (sort: TaskSortBy) => void;
   setVoiceModalOpen: (open: boolean) => void;
 }
 
@@ -29,7 +27,6 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
   isLoading: true,
   searchQuery: '',
   filterStatus: 'all',
-  sortBy: 'createdAt',
   isVoiceModalOpen: false,
 
   loadTasks: async () => {
@@ -94,6 +91,5 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
 
   setSearchQuery: (query: string) => set({ searchQuery: query }),
   setFilterStatus: (filter: TaskFilter) => set({ filterStatus: filter }),
-  setSortBy: (sort: TaskSortBy) => set({ sortBy: sort }),
   setVoiceModalOpen: (open: boolean) => set({ isVoiceModalOpen: open }),
 }));
